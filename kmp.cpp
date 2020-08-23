@@ -10,18 +10,15 @@ using namespace std;
 vector<int> createAux(string s) {
 	int n = s.length();
 
-
 	// initialize each index with 0
 
 	vector<int> aux(n, 0);
 
 	// the value at first index is 0
 	// so we start traversal from index 1
-
 	int i = 1;
 
 	// m can be viewed as the index of first mismatch
-
 	int m = 0;
 
 	while (i < n) {
@@ -32,6 +29,7 @@ vector<int> createAux(string s) {
 			aux[i] = m;
 			i++;
 		}
+		
 		// if prefix is not same as suffix till m-1
 		// we will check the index of previous possible prefix
 		else {
@@ -39,10 +37,13 @@ vector<int> createAux(string s) {
 			// if m is not equal to zero
 			// check for the pre
 			if (m > 0) {
-
 				// we do not increment i here
 				m = aux[m - 1];
-			} else {
+			} 
+			// if m is equal to zero
+			// there was no prefix equal to suffix
+			// for index i
+			else {
 
 				// increment i here
 				aux[i] = 0;
@@ -56,8 +57,11 @@ vector<int> createAux(string s) {
 
 }
 
+
+
 vector<int> matchingIndex(string text, string pat) {
 
+	// array to store the indices of matching
 	vector<int> matches;
 
 	// get the aux array using the above function
